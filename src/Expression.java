@@ -14,11 +14,18 @@ public class Expression {
         return this.value;
     }
 
-    public Object formatValue(String value) throws Exception{
+    public Object formatValue(String value){
 
         ScriptEngineManager factory = new ScriptEngineManager();
         ScriptEngine engine = factory.getEngineByName("JavaScript");
 
-        return engine.eval(value);
+        try{
+            return engine.eval(value);
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            e.printStackTrace();
+            return engine;
+        }
     }
 }
